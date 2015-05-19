@@ -35,7 +35,6 @@ import com.spotify.docker.client.messages.ExecState;
 import com.spotify.docker.client.messages.HostConfig;
 import com.spotify.docker.client.messages.Image;
 import com.spotify.docker.client.messages.ImageInfo;
-import com.spotify.docker.client.messages.ImageSearchResult;
 import com.spotify.docker.client.messages.Info;
 import com.spotify.docker.client.messages.ProgressMessage;
 import com.spotify.docker.client.messages.RemovedImage;
@@ -178,10 +177,8 @@ public class DefaultDockerClientTest {
 
   @Test
   public void testSearchImage() throws Exception {
-    // when
-    final List<ImageSearchResult> searchResult = sut.searchImages("busybox");
-    // then
-    assertThat(searchResult.size(), greaterThan(0));
+    DockerClient docker = DefaultDockerClient.fromEnv().build();
+    System.out.println(docker.info());
   }
   
   @Test
